@@ -1,15 +1,18 @@
 <template>
   
+  <RealData />
   <HelloWorld />
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import RealData from './components/RealData.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    RealData
   }
 }
 </script>
