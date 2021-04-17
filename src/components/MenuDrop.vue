@@ -45,7 +45,7 @@ export default {
         justify-content:center;
     }
     nav .menu-item{
-        color: #fff;
+        color: rgb(16, 197, 221);
         padding: 10px 20px;
         position: relative;
         text-align:center;

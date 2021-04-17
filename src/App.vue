@@ -3,10 +3,10 @@
 
   <MenuDrop />
   </header>
-  <LineChart v-bind:class="[toggleClass]"/>
+  <!-- <LineChart v-bind:class="[toggleClass]"/>
   <h1>Hello</h1>
- <button @click="play">Play again</button>
-  <!-- <RealData /> -->
+ <button @click="play">Play again</button> -->
+  <RealData />
   <!-- <HelloWorld /> -->
 </template>
 

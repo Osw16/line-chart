@@ -1,11 +1,12 @@
-import {post} from 'axios';
-const url = 'https://spotlight-unfpa.datacivica.org/api/v1/timeline';
+import axios from 'axios';
 const data = {"id_crime":12,"id_ent":14,"id_mun1":39,};
+const url = 'https://spotlight-unfpa.datacivica.org/api/v1/timeline';
 
-getCrime =  axios.post(url,data)
-.then(response =>(console.log(response)))
-.catch(error => console.log(error));
+export const HTTP = axios.create({
+    baseURL: url,
+    headers:data,
+    method:'POST',
+  })
 
-export default{
-    getCrime
-}
+
+    
