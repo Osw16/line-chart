@@ -3,10 +3,10 @@
         <a href="#">
             {{title}}
         </a>
-        <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-down-512.png" alt="arrow">
+        <img src="#" alt="arrow">
         <transition name="fade" appear>
             <div class="sub-menu" v-if="isOpen">
-                <div v-for="(item,i) in items" :key="i" class="menu-item">
+                <div v-for="(item,i) in items" :key="i" class="menu-item" @click="play">
                 <a :href="item.link">{{item.name}}</a>
                 </div>
             </div>
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+
 
 export default {
     name:'dropdown',

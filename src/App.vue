@@ -3,6 +3,9 @@
 
   <MenuDrop />
   </header>
+  <LineChart v-bind:class="[toggleClass]"/>
+  <h1>Hello</h1>
+ <button @click="play">Play again</button>
   <!-- <RealData /> -->
   <!-- <HelloWorld /> -->
 </template>
@@ -11,13 +14,29 @@
 import HelloWorld from './components/HelloWorld.vue'
 import MenuDrop from './components/MenuDrop.vue'
 import RealData from './components/RealData.vue'
+import LineChart from "./components/LineChart"
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
     RealData,
-    MenuDrop
+    MenuDrop,
+    LineChart
+  },
+    data() {
+    return {
+      toggleClass: "ani1"
+    };
+  },
+
+  methods: {
+    play() {
+      // toggle classes to animate the line draw
+      this.toggleClass == "ani1"
+        ? (this.toggleClass = "ani2")
+        : (this.toggleClass = "ani1");
+    }
   }
 }
 </script>
@@ -39,5 +58,34 @@ header{
   width:100vw;
   background-color:#222;
   padding:15px;
+}
+button {
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: url(http://ui-design-coder.com/wp-content/themes/twentyfifteen/css/playBtn.ce805501.svg) no-repeat top left;
+  background-size: contain;
+  color: transparent;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 8em;
+}
+button:focus {
+  border: none;
+}
+
+button#playBtn {
+  fill: red;
+}
+
+button:focus {
+  outline: none;
 }
 </style>
