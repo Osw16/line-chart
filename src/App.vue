@@ -41,7 +41,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 #app {
 
   background:rgb(202, 150, 209);
