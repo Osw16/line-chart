@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import * as d3 from "d3";
+import * as d3 from 'd3'
 export default {
-  name: "axis",
+  name: 'axis',
   props: {
     scales: Function,
     chartDefaults: Object,
@@ -16,19 +16,19 @@ export default {
     trns: String
   },
 
-  data() {
+  data () {
     return {
       width: 0,
       height: 0
-    };
+    }
   },
-  mounted() {
-    var node = this.$refs.axis;
+  mounted () {
+    var node = this.$refs.axis
 
     // d3.select(node).call(this.scales());
-    d3.select(node).call(this.scales);
+    d3.select(node).call(this.scales)
   }
-};
+}
 </script>
 
 <style>

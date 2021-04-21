@@ -1,48 +1,55 @@
 <template>
   <nav>
-      <div class="menu-item"><a href="#">Hecho</a></div>
+      <!-- <Hechos title="Hecho" :items="entidades"/> -->
+      <!-- <Municipio title="Municipio"/> -->
+      <Hechos title="Hecho"/>
+      <Entidad title="Estado"/>
+    
+      <!-- <div class="menu-item"><a href="#">Hecho</a></div>
       <div class="menu-item"><a href="#">Estado</a></div>
-      <Dropdown title="Services" :items="entidades"/>
-      <div class="menu-item"><a href="#">Municipio</a></div>
+      <div class="menu-item"><a href="#">Municipio</a></div> -->
   </nav>
 </template>
 
 <script>
-import Dropdown from './Dropdown'
-
+import Hechos from './Hechos'
+import Entidad from './Entidad'
+import Municipio from './Municipio'
 
 export default {
-  components: { Dropdown },
-    name:'menudrop',
-    components:{
-        Dropdown
-},
-    data(){
-        return{
-            entidades:[
-                {
-                    name:'Aguas Caliente',
-                    link:'#'
-                },
-                {
-                    name:'Baja California',
-                    link:'#'
-                },
-                {
-                    title:'Videos',
-                    link:'#'
-                }
-            ]
+  name: 'menudrop',
+  components: {
+    Hechos,
+    Entidad,
+    Municipio
+  },
+  data () {
+    return {
+      entidades: [
+        {
+          name: 'Aguas Caliente',
+          link: '#'
+        },
+        {
+          name: 'Baja California',
+          link: '#'
+        },
+        {
+          title: 'Videos',
+          link: '#'
         }
+      ]
     }
+  }
 }
 </script>
 
-<style>
+<style scoped>
     nav{
         display:flex;
         align-items:center;
         justify-content:center;
+        gap:50px;
     }
     nav .menu-item{
         color: rgb(16, 197, 221);

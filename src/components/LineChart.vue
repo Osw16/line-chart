@@ -1,14 +1,14 @@
 <template><div>
   <svg width="100%" height="100%" viewBox="0 0 800 330"
   preserveAspectRatio="xMidYMid meet" >
-    
+
     <g class='lineChart' v-bind:transform="translate">
       <axis class='yA' v-bind:scales="getScales().yAxis" v-bind:chartDefaults='chartDefaults' v-bind:data='data' v-bind:trns='trnsY'/>
       <axis class='xA' v-bind:scales="getScales().xAxis" v-bind:chartDefaults='chartDefaults' v-bind:data='data' v-bind:trns='trnsX()'/>
       <axis class='grid' v-bind:scales="getScales().yGrid" v-bind:chartDefaults='chartDefaults' v-bind:data='data' v-bind:trns='trnsY' v-bind:style="{opacity: chartDefaults.gridOpacity}"/>
     <path class='line' :d="line" />
     </g>
-      
+
   </svg>
 
   <p class='text' > {{chartDefaults.title}}</p>
@@ -16,70 +16,70 @@
 </template>
 
 <script>
-import * as d3 from "d3";
-import Axis from "./Axis";
+import * as d3 from 'd3'
+import Axis from './Axis'
 export default {
-  name: "vue-line-chart",
+  name: 'vue-line-chart',
   components: {
     axis: Axis // Using reusable component to draw x,y axis and Grid.
   },
-  data() {
+  data () {
     return {
       data: [
         {
-          day: "01-11-2016",
+          day: '01-11-2016',
           count: 80
         },
         {
-          day: "02-12-2016",
+          day: '02-12-2016',
           count: 250
         },
         {
-          day: "03-13-2016",
+          day: '03-13-2016',
           count: 150
         },
         {
-          day: "04-14-2016",
+          day: '04-14-2016',
           count: 496
         },
         {
-          day: "05-15-2016",
+          day: '05-15-2016',
           count: 140
         },
         {
-          day: "06-16-2016",
+          day: '06-16-2016',
           count: 380
         },
         {
-          day: "07-17-2016",
+          day: '07-17-2016',
           count: 140
         },
         {
-          day: "08-17-2016",
+          day: '08-17-2016',
           count: 240
         },
         {
-          day: "09-18-2016",
+          day: '09-18-2016',
           count: 100
         },
         {
-          day: "10-18-2016",
+          day: '10-18-2016',
           count: 260
         },
         {
-          day: "11-18-2016",
+          day: '11-18-2016',
           count: 100
         },
         {
-          day: "12-18-2016",
+          day: '12-18-2016',
           count: 150
         }
       ],
       chartDefaults: {
         width: 800,
         height: 300,
-        chartId: "linechart-vue",
-        title: "chartDefaults.title",
+        chartId: 'linechart-vue',
+        title: 'chartDefaults.title',
         margin: {
           top: 5,
           right: 5,
@@ -89,75 +89,75 @@ export default {
         gridOpacity: 1,
         data: []
       },
-      line: "",
-      //Translate co-ords for chart, x axis and yaxis. This is injected into template
-      translate: "translate(" + 50 + "," + 5 + ")",
-      trnsY: "translate(0,0)",
+      line: '',
+      // Translate co-ords for chart, x axis and yaxis. This is injected into template
+      translate: 'translate(' + 50 + ',' + 5 + ')',
+      trnsY: 'translate(0,0)',
       trnsX: this.getTrnsx,
       toggleClass: true
-    };
+    }
   },
-  mounted() {
-    var scale = {};
-    //Kick off drawing chart once component is mounted
-    this.calculatePath();
+  mounted () {
+    // var scale = {}
+    // Kick off drawing chart once component is mounted
+    this.calculatePath()
   },
   methods: {
-    getScales() {
+    getScales () {
       // All the maths to work chart co ordinates and woring out Axis
-      var parseDate = d3.timeParse("%m-%d-%Y");
+      var parseDate = d3.timeParse('%m-%d-%Y')
 
-      this.data.forEach(function(d) {
-        d.date = parseDate(d.day);
-      });
+      this.data.forEach(function (d) {
+        d.date = parseDate(d.day)
+      })
 
       const x = d3
         .scaleTime()
         .domain(
-          d3.extent(this.data, function(d) {
-            return d.date;
+          d3.extent(this.data, function (d) {
+            return d.date
           })
         )
-        .rangeRound([0, this.chartDefaults.width - 100]);
+        .rangeRound([0, this.chartDefaults.width - 100])
       const y = d3
         .scaleLinear()
         .domain([
           0,
-          d3.max(this.data, function(d) {
-            return d.count + 100;
+          d3.max(this.data, function (d) {
+            return d.count + 100
           })
         ])
-        .range([this.chartDefaults.height, 0]);
-      d3.axisBottom().scale(x);
-      d3.axisLeft().scale(y);
+        .range([this.chartDefaults.height, 0])
+      d3.axisBottom().scale(x)
+      d3.axisLeft().scale(y)
 
-      //Key funtions to draw X-axis,YAxis and the grid. All uses component axis
-      //play around with time format to get it to display as you want : d3.timeFormat("%b-%d")
+      // Key funtions to draw X-axis,YAxis and the grid. All uses component axis
+      // play around with time format to get it to display as you want : d3.timeFormat("%b-%d")
       var xAxis = d3
         .axisBottom()
         .scale(x)
-        .tickFormat(d3.timeFormat("%b"))
+        .tickFormat(d3.timeFormat('%b'))
         .tickValues(
           this.data
-            .map(function(d, i) {
+            .map(function (d, i) {
               if (i > 0) {
-                return d.date;
+                return d.date
               }
-              return false;
+              return false
             })
             .splice(1)
         )
-        .ticks(4);
+        .ticks(4)
 
       var yAxis = d3
         .axisLeft()
         .scale(y)
-        .ticks(5);
+        .ticks(5)
       var yGrid = d3
         .axisLeft()
         .scale(y)
         .tickSize(-(this.chartDefaults.width - 100), 0, 0)
-        .tickFormat("");
+        .tickFormat('')
       // Return the key calculations and functions to draw the chart
       return {
         x,
@@ -165,32 +165,32 @@ export default {
         xAxis,
         yAxis,
         yGrid
-      };
+      }
     },
-    getTrnsx(chartDefaults) {
-      //works out translate value in realtive to dynamic height
-      const t = "translate(0," + this.chartDefaults.height + ")";
-      return t;
+    getTrnsx (chartDefaults) {
+      // works out translate value in realtive to dynamic height
+      const t = 'translate(0,' + this.chartDefaults.height + ')'
+      return t
     },
-    calculatePath() {
-      //Get key calculation funtions to draw chart , Ie scale, axis mapping and plotting
-      const scale = this.getScales();
+    calculatePath () {
+      // Get key calculation funtions to draw chart , Ie scale, axis mapping and plotting
+      const scale = this.getScales()
       // Define calcultion to draw chart
       const path = d3
         .line()
         .x(d => {
-          return scale.x(d.date);
+          return scale.x(d.date)
         })
         .y(d => {
-          return scale.y(d.count);
+          return scale.y(d.count)
         })
-        .curve(d3.curveCardinal);
+        .curve(d3.curveCardinal)
 
       // draw line then this.line is injected into the template
-      this.line = path(this.data);
+      this.line = path(this.data)
     }
   }
-};
+}
 </script>
 <!-- css loaderhttps://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles -->
 <style>

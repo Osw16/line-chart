@@ -1,47 +1,37 @@
 <template>
   <header>
 
-  <MenuDrop />
   </header>
-  <!-- <LineChart v-bind:class="[toggleClass]"/>
-  <h1>Hello</h1>
- <button @click="play">Play again</button> -->
-  <RealData />
-  <!-- <HelloWorld /> -->
+  <MenuDrop />
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import MenuDrop from './components/MenuDrop.vue'
-import RealData from './components/RealData.vue'
-import LineChart from "./components/LineChart"
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    RealData,
-    MenuDrop,
-    LineChart
+    MenuDrop
   },
-    data() {
+  data () {
     return {
-      toggleClass: "ani1"
-    };
+      toggleClass: 'ani1'
+    }
   },
 
   methods: {
-    play() {
+    play () {
       // toggle classes to animate the line draw
-      this.toggleClass == "ani1"
-        ? (this.toggleClass = "ani2")
-        : (this.toggleClass = "ani1");
+      this.toggleClass === 'ani1'
+        ? (this.toggleClass = 'ani2')
+        : (this.toggleClass = 'ani1')
     }
   }
 }
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 #app {
 
   background:rgb(202, 150, 209);
