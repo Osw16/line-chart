@@ -1,47 +1,86 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-<div v-for="(result, index) in results"
-:key="result">
-  <p>{{index}}</p>
-</div>
-  <div>{{info}}</div>
+  <Menu as="div" class="relative inline-block text-left">
+    <div>
+      <MenuButton
+        class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+      >
+        {{ title }}
+        <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+      </MenuButton>
+    </div>
+
+    <transition
+      enter-active-class="transition ease-out duration-100"
+      enter-from-class="transform opacity-0 scale-95"
+      enter-to-class="transform opacity-100 scale-100"
+      leave-active-class="transition ease-in duration-75"
+      leave-from-class="transform opacity-100 scale-100"
+      leave-to-class="transform opacity-0 scale-95"
+    >
+      <MenuItems
+        class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none overflow-auto h-32"
+      >
+        <div class="py-1">
+          <MenuItem
+            v-for="(product,i) in products"
+            :key="product"
+            :ref="
+              (el) => {
+                if (el) divs[i] = el;
+              }
+            "
+            v-slot="{ active }"
+          >
+            <a
+              href="#"
+              :class="[
+                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                'block px-4 py-2 text-sm',
+              ]"
+              >{{ product }}</a
+            >
+          </MenuItem>
+        </div>
+      </MenuItems>
+    </transition>
+  </Menu>
 </template>
 
 <script>
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-import { ChevronDownIcon } from '@heroicons/vue/solid'
-import { ref, reactive } from 'vue'
-import axios from 'axios'
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import { ChevronDownIcon } from "@heroicons/vue/solid";
+import { ref, reactive } from "vue";
+import axios from "axios";
 
 export default {
-  name:'municipio',
-  props:['title', 'items','name'],
+  name: "municipio",
+  props: ["title", "items", "name"],
   components: {
     Menu,
     MenuButton,
     MenuItem,
     MenuItems,
-    ChevronDownIcon
-  },  
-  data () {
-    return {
-      info: null,
-      results:[]
-    }
+    ChevronDownIcon,
   },
-   mounted() {
-     const url = 'https://api.npoint.io/b786b7bdd8855c88c160'
-          axios.get(url).then(response => {
-            this.results = response.data
-          })
-            console.log(response)
-          },
-        
-  created () {
-          const url = 'https://api.npoint.io/b786b7bdd8855c88c160'
-          axios.get(url).then(response => {
-          this.info = response.data[1].name_ent
-          }).catch(error => console.log(error))
-  }
-}
+
+  setup() {
+    const products = ref([]);
+    const divs = reactive([]);
+    const url = "https://api.npoint.io/2e9129c41e1f250faa90";
+    axios.get(url).then((response) => {
+      products.value = response.data.map((x) => x.name_mun);
+      console.log(products);
+    });
+    setTimeout(() => {
+      console.log("hello entidad");
+    }, 2000);
+
+    return {
+      products,
+      divs,
+    };
+  },
+};
 </script>
+

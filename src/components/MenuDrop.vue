@@ -1,7 +1,7 @@
 <template>
   <nav>
       <!-- <Hechos title="Hecho" :items="entidades"/> -->
-      <!-- <Municipio title="Municipio"/> -->
+      <Municipio title="Municipio"/>
       <Hechos title="Hecho"/>
       <Entidad title="Estado"/>
     
