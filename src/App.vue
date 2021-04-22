@@ -3,16 +3,19 @@
 
   </header>
   <MenuDrop />
+  <!-- <BaseLoading /> -->
 
 </template>
 
 <script>
 import MenuDrop from './components/MenuDrop.vue'
+import BaseLoading from './components/BaseLoading.vue'
 
 export default {
   name: 'App',
   components: {
-    MenuDrop
+    MenuDrop,
+    BaseLoading
   },
   data () {
     return {

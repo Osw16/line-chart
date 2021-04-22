@@ -23,39 +23,44 @@
       >
         <div class="py-1">
           <MenuItem
-            v-for="(product,i) in products"
-            :key="product"
-            :ref="
-              (el) => {
-                if (el) divs[i] = el;
-              }
-            "
-            v-slot="{ active }"
-          >
+            v-for="(municipio, index) in municipios"
+            :key="index"
+            v-slot="{active}">
             <a
-              href="#"
+              href="ref"
               :class="[
                 active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                'block px-4 py-2 text-sm',
+                'block px-4 py-2 text-1xl	 ',
               ]"
-              >{{ product }}</a
+              >{{ municipio.name_mun }}
+              <div class="text-xs	italic text-right name-short">
+              {{ municipio.name_ent_short }}
+              </div>
+              
+              </a
             >
           </MenuItem>
         </div>
       </MenuItems>
     </transition>
   </Menu>
+  <!-- <div>
+    <div v-for="(municipio, index) in municipios"
+    :key="index">
+        {{municipio.name_mun}}
+      </div>
+  </div> -->
 </template>
 
 <script>
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/solid";
-import { ref, reactive } from "vue";
+// import { ref, reactive } from "vue";
+
 import axios from "axios";
 
 export default {
-  name: "municipio",
-  props: ["title", "items", "name"],
+  props:['title', 'items','name'],
   components: {
     Menu,
     MenuButton,
@@ -63,24 +68,103 @@ export default {
     MenuItems,
     ChevronDownIcon,
   },
-
-  setup() {
-    const products = ref([]);
-    const divs = reactive([]);
+    data () {
+      return {
+        municipios: []
+    }
+  },
+  created () {
+    
     const url = "https://api.npoint.io/2e9129c41e1f250faa90";
     axios.get(url).then((response) => {
-      products.value = response.data.map((x) => x.name_mun);
-      console.log(products);
-    });
-    setTimeout(() => {
-      console.log("hello entidad");
-    }, 2000);
-
-    return {
-      products,
-      divs,
-    };
-  },
+      this.municipios = response.data
+      const respuesta = response.data
+      console.log(this.municipios)
+      console.log(respuesta)
+      
+    }).catch((e)=>{
+      console.log(e)
+    })
+    
+  }
+  
 };
 </script>
 
+<style lang="scss" scoped>
+body {
+  font-family: "Archivo Narrow", sans-serif;
+  background: #25859a;
+}
+.name-short{
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(0%, rgba(255,255,255,1)), color-stop(38%, rgba(143,93,137,1)), color-stop(77%, rgba(255,255,255,1)));
+background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(143,93,137,1) 38%, rgba(255,255,255,1) 77%);
+background: -o-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(143,93,137,1) 38%, rgba(255,255,255,1) 77%);
+background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(143,93,137,1) 38%, rgba(255,255,255,1) 77%);
+background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(143,93,137,1) 38%, rgba(255,255,255,1) 77%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1 );
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Fjalla One", sans-serif;
+}
+
+h1 {
+  margin-top: 40px;
+  color: white;
+  text-align: center;
+}
+
+.loading {
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}
+
+.display {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#app {
+  @extend .display;
+  flex-direction: column;
+}
+
+.beer-contain {
+  @extend .display;
+  width: 50%;
+  margin: 20px 24%;
+  box-shadow: 0 2px 3px 1px rgba(30, 0, 0, 0.1);
+}
+
+.beer-img {
+  @extend .display;
+  padding: 30px;
+  background: #ff6542;
+  border: 1px solid #88498f;
+  border-right: 1px solid #f44822;
+}
+
+.beer-info {
+  background: #564154;
+  color: white;
+  padding: 30px;
+  border: 1px solid #88498f;
+  .bright {
+    color: #fcd7cf;
+    font-family: "Contrail One", sans-serif;
+  }
+}
+
+h3 {
+  margin-bottom: 5px;
+}
+
+ul {
+  margin-top: 5px;
+}
+</style>
