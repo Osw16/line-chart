@@ -25,7 +25,8 @@
           <MenuItem
             v-for="(municipio, index) in municipios"
             :key="index"
-            v-slot="{active}">
+            v-slot="{ active }"
+          >
             <a
               href="ref"
               :class="[
@@ -33,34 +34,25 @@
                 'block px-4 py-2 text-1xl	 ',
               ]"
               >{{ municipio.name_mun }}
-              <div class="text-xs	italic text-right name-short">
-              {{ municipio.name_ent_short }}
+              <div class="text-xs italic text-right name-short">
+                {{ municipio.name_ent_short }}
               </div>
-              
-              </a
-            >
+            </a>
           </MenuItem>
         </div>
       </MenuItems>
     </transition>
   </Menu>
-  <!-- <div>
-    <div v-for="(municipio, index) in municipios"
-    :key="index">
-        {{municipio.name_mun}}
-      </div>
-  </div> -->
 </template>
 
 <script>
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/solid";
-// import { ref, reactive } from "vue";
 
-import axios from "axios";
+import EventService from "@/services/EventService.js";
 
 export default {
-  props:['title', 'items','name'],
+  props: ["title", "items", "name"],
   components: {
     Menu,
     MenuButton,
@@ -68,26 +60,23 @@ export default {
     MenuItems,
     ChevronDownIcon,
   },
-    data () {
-      return {
-        municipios: []
-    }
+  data() {
+    return {
+      municipios: [],
+    };
   },
-  created () {
-    
-    const url = "https://api.npoint.io/2e9129c41e1f250faa90";
-    axios.get(url).then((response) => {
-      this.municipios = response.data
-      const respuesta = response.data
-      console.log(this.municipios)
-      console.log(respuesta)
-      
-    }).catch((e)=>{
-      console.log(e)
-    })
-    
-  }
-  
+  created() {
+    EventService.getState()
+      .then((response) => {
+        this.municipios = response.data;
+        const respuesta = response.data;
+        console.log(this.municipios);
+        console.log(respuesta);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  },
 };
 </script>
 
@@ -96,13 +85,44 @@ body {
   font-family: "Archivo Narrow", sans-serif;
   background: #25859a;
 }
-.name-short{
-background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(0%, rgba(255,255,255,1)), color-stop(38%, rgba(143,93,137,1)), color-stop(77%, rgba(255,255,255,1)));
-background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(143,93,137,1) 38%, rgba(255,255,255,1) 77%);
-background: -o-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(143,93,137,1) 38%, rgba(255,255,255,1) 77%);
-background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(143,93,137,1) 38%, rgba(255,255,255,1) 77%);
-background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(143,93,137,1) 38%, rgba(255,255,255,1) 77%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1 );
+.name-short {
+  background: -webkit-gradient(
+    left top,
+    right top,
+    color-stop(0%, rgba(255, 255, 255, 1)),
+    color-stop(0%, rgba(255, 255, 255, 1)),
+    color-stop(38%, rgba(143, 93, 137, 1)),
+    color-stop(77%, rgba(255, 255, 255, 1))
+  );
+  background: -webkit-linear-gradient(
+    left,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(143, 93, 137, 1) 38%,
+    rgba(255, 255, 255, 1) 77%
+  );
+  background: -o-linear-gradient(
+    left,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(143, 93, 137, 1) 38%,
+    rgba(255, 255, 255, 1) 77%
+  );
+  background: -ms-linear-gradient(
+    left,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(143, 93, 137, 1) 38%,
+    rgba(255, 255, 255, 1) 77%
+  );
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(143, 93, 137, 1) 38%,
+    rgba(255, 255, 255, 1) 77%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1 );
 }
 h1,
 h2,

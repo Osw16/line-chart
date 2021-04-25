@@ -3,6 +3,7 @@
 
   </header>
   <MenuDrop />
+  <RealData />
   <!-- <BaseLoading /> -->
 
 </template>
@@ -10,12 +11,15 @@
 <script>
 import MenuDrop from './components/MenuDrop.vue'
 import BaseLoading from './components/BaseLoading.vue'
+import RealData from './components/RealData.vue'
+
 
 export default {
   name: 'App',
   components: {
     MenuDrop,
-    BaseLoading
+    BaseLoading,
+    RealData
   },
   data () {
     return {

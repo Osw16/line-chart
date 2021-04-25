@@ -1,375 +1,216 @@
+<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div
-    v-for="(item, i) in list"
-    :key="item"
-    :ref="
-      (el) => {
-        if (el) divs[i] = el;
-      }
-    "
-  >
-    {{ item }}
-  </div>
+  <Menu as="div" class="relative inline-block text-left">
+    <div>
+      <MenuButton
+        class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+      >
+        {{ title }}
+        <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+      </MenuButton>
+    </div>
+
+    <transition
+      enter-active-class="transition ease-out duration-100"
+      enter-from-class="transform opacity-0 scale-95"
+      enter-to-class="transform opacity-100 scale-100"
+      leave-active-class="transition ease-in duration-75"
+      leave-from-class="transform opacity-100 scale-100"
+      leave-to-class="transform opacity-0 scale-95"
+    >
+      <MenuItems
+        class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none overflow-auto h-32"
+      >
+        <div class="py-1">
+          <MenuItem
+            v-for="(product,i) in products"
+            :key="product"
+            :ref="
+              (el) => {
+                if (el) divs[i] = el;
+              }
+            "
+            v-slot="{ active }"
+          >
+            <a
+              href="#"
+              :class="[
+                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                'block px-4 py-2 text-sm',
+              ]"
+              >{{ product }}</a
+            >
+          </MenuItem>
+        </div>
+      </MenuItems>
+    </transition>
+  </Menu>
 </template>
 
 <script>
-import { ref, reactive, onBeforeUpdate } from 'vue'
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import { ChevronDownIcon } from "@heroicons/vue/solid";
+import { ref, reactive } from "vue";
+import axios from "axios";
 
 export default {
-  setup () {
-    const list = reactive([
-      {
-        id_crime: 1,
-        crime_name: 'Homicidio doloso'
-      },
-      {
-        id_crime: 2,
-        crime_name: 'Suicidio'
-      },
-      {
-        id_crime: 3,
-        crime_name: 'Feminicidios (metodología DC)'
-      },
-      {
-        id_crime: 4,
-        crime_name: 'Investigaciones por abuso sexual'
-      },
-      {
-        id_crime: 5,
-        crime_name: 'Investigaciones por acoso sexual'
-      },
-      {
-        id_crime: 6,
-        crime_name: 'Investigaciones por feminicidio'
-      },
-      {
-        id_crime: 7,
-        crime_name: 'Investigaciones por homicidio culposo'
-      },
-      {
-        id_crime: 8,
-        crime_name: 'Investigaciones por homicidio doloso'
-      },
-      {
-        id_crime: 9,
-        crime_name: 'Investigaciones por hostigamiento sexual'
-      },
-      {
-        id_crime: 10,
-        crime_name: 'Investigaciones por lesiones culposas'
-      },
-      {
-        id_crime: 11,
-        crime_name: 'Investigaciones por lesiones dolosas'
-      },
-      {
-        id_crime: 12,
-        crime_name: 'Investigaciones por narcomenudeo'
-      },
-      {
-        id_crime: 13,
-        crime_name: 'Investigaciones por rapto'
-      },
-      {
-        id_crime: 14,
-        crime_name: 'Investigaciones por secuestro'
-      },
-      {
-        id_crime: 15,
-        crime_name: 'Investigaciones por tráfico de menores'
-      },
-      {
-        id_crime: 16,
-        crime_name: 'Investigaciones por trata de personas'
-      },
-      {
-        id_crime: 17,
-        crime_name: 'Investigaciones por violación equiparada'
-      },
-      {
-        id_crime: 18,
-        crime_name: 'Investigaciones por violación simple'
-      },
-      {
-        id_crime: 19,
-        crime_name: 'Investigaciones por violencia de género'
-      },
-      {
-        id_crime: 20,
-        crime_name: 'Investigaciones por violencia familiar'
-      },
-      {
-        id_crime: 21,
-        crime_name:
-          'Víctimas en carpetas de investigación por casos de extorsión'
-      },
-      {
-        id_crime: 22,
-        crime_name:
-          'Víctimas en carpetas de investigación por casos de feminicidio'
-      },
-      {
-        id_crime: 23,
-        crime_name:
-          'Víctimas en carpetas de investigación por casos de homicidio culposo'
-      },
-      {
-        id_crime: 24,
-        crime_name:
-          'Víctimas en carpetas de investigación por casos de homicidio doloso'
-      },
-      {
-        id_crime: 25,
-        crime_name:
-          'Víctimas en carpetas de investigación por casos de lesiones culposas'
-      },
-      {
-        id_crime: 26,
-        crime_name:
-          'Víctimas en carpetas de investigación por casos de lesiones dolosas'
-      },
-      {
-        id_crime: 27,
-        crime_name: 'Víctimas en carpetas de investigación por casos de rapto'
-      },
-      {
-        id_crime: 28,
-        crime_name:
-          'Víctimas en carpetas de investigación por casos de secuestro'
-      },
-      {
-        id_crime: 29,
-        crime_name:
-          'Víctimas en carpetas de investigación por casos de tráfico de menores'
-      },
-      {
-        id_crime: 30,
-        crime_name:
-          'Víctimas en carpetas de investigación por casos de trata de personas'
-      },
-      {
-        id_crime: 31,
-        crime_name:
-          'Llamadas de emergencia a nivel estatal por incidentes de violencia contra mujeres'
-      },
-      {
-        id_crime: 32,
-        crime_name:
-          'Llamadas de emergencia a nivel nacional por incidentes de violencia contra mujeres'
-      },
-      {
-        id_crime: 33,
-        crime_name: 'Total de casos positivos por COVID-19'
-      },
-      {
-        id_crime: 34,
-        crime_name:
-          'Total de casos positivos en mujeres embarazadas por COVID-19'
-      },
-      {
-        id_crime: 35,
-        crime_name: 'Total de defunciones por COVID-19'
-      },
-      {
-        id_crime: 36,
-        crime_name: 'Total de defunciones en mujeres embarazadas por COVID-19'
-      },
-      {
-        id_crime: 37,
-        crime_name: 'Total de personas desaparecidas a nivel estatal'
-      },
-      {
-        id_crime: 38,
-        crime_name: 'Total de embarazos infantiles'
-      },
-      {
-        id_crime: 39,
-        crime_name: 'Índice de rezago social'
-      },
-      {
-        id_crime: 40,
-        crime_name: 'Carencia por acceso a servicios de salud'
-      },
-      {
-        id_crime: 41,
-        crime_name: 'Carencia por servicios básicos en vivienda'
-      },
-      {
-        id_crime: 42,
-        crime_name: 'Carencia por acceso a seguridad social'
-      },
-      {
-        id_crime: 43,
-        crime_name: 'Pobreza extrema'
-      },
-      {
-        id_crime: 44,
-        crime_name: 'Pobreza moderada'
-      },
-      {
-        id_crime: 45,
-        crime_name: 'Carencia por rezago educativo'
-      },
-      {
-        id_crime: 46,
-        crime_name: 'Egresos hospitalarios por lesiones con armas de fuego'
-      },
-      {
-        id_crime: 47,
-        crime_name: 'Egresos hospitalarios por asfixia o ahorcamiento'
-      },
-      {
-        id_crime: 48,
-        crime_name: 'Egresos hospitalarios por lesiones'
-      },
-      {
-        id_crime: 49,
-        crime_name: 'Egresos hospitalarios por abuso sexual'
-      },
-      {
-        id_crime: 50,
-        crime_name: 'Asegurados mensuales'
-      },
-      {
-        id_crime: 51,
-        crime_name: 'Total de personas desaparecidas a nivel municipal'
-      },
-      {
-        id_crime: 52,
-        crime_name: 'Total de víctimas de agresiones según ENVIPE'
-      },
-      {
-        id_crime: 53,
-        crime_name: 'Personas víctimas de extorsión según ENVIPE'
-      },
-      {
-        id_crime: 54,
-        crime_name: 'Personas víctimas de hostigamiento sexual según ENVIPE'
-      },
-      {
-        id_crime: 55,
-        crime_name: 'Personas víctimas de lesiones según ENVIPE'
-      },
-      {
-        id_crime: 56,
-        crime_name: 'Personas víctimas de secuestro según ENVIPE'
-      },
-      {
-        id_crime: 57,
-        crime_name: 'Personas víctimas de violación según ENVIPE'
-      },
-      {
-        id_crime: 58,
-        crime_name:
-          'Personas que consideran insegura la entidad donde residen según ENVIPE'
-      },
-      {
-        id_crime: 59,
-        crime_name:
-          'Mujeres de 15 años o más que han sufrido al menos un incidente de abuso sexual'
-      },
-      {
-        id_crime: 60,
-        crime_name:
-          'Mujeres de 15 años o más que han sufrido al menos un incidente de acoso sexual'
-      },
-      {
-        id_crime: 61,
-        crime_name:
-          'Mujeres de 15 años o más que han sufrido al menos una cesarea sin consentimiento'
-      },
-      {
-        id_crime: 62,
-        crime_name:
-          'Mujeres de 15 años o más que han sufrido consecuencias económicas por embarazo'
-      },
-      {
-        id_crime: 63,
-        crime_name:
-          'Mujeres de 15 años o más que han sido esterelizadas o recibido un anticonceptivo sin consentimiento'
-      },
-      {
-        id_crime: 64,
-        crime_name:
-          'Mujeres de 15 años o más que han sido humilladas por ser mujer al menos una vez'
-      },
-      {
-        id_crime: 65,
-        crime_name:
-          'Mujeres de 15 años o más que han sufrido al menos un intento de violación'
-      },
-      {
-        id_crime: 66,
-        crime_name:
-          'Mujeres de 15 años o más que han sido lesionadas físcamente al menos una vez'
-      },
-      {
-        id_crime: 67,
-        crime_name:
-          'Mujeres de 15 años o más que han sufrido al menos un incidente de abuso sexual'
-      },
-      {
-        id_crime: 68,
-        crime_name:
-          'Mujeres de 15 años o más que han sido seguidas o vigiladas'
-      },
-      {
-        id_crime: 69,
-        crime_name:
-          'Mujeres de 15 años o más que han sufrido al menos una violación'
-      },
-      {
-        id_crime: 70,
-        crime_name: 'Personas desempleadas'
-      },
-      {
-        id_crime: 71,
-        crime_name: 'Personas autoadscriptas como afrodescendientes'
-      },
-      {
-        id_crime: 72,
-        crime_name: 'Personas autoadscriptas como indígenas'
-      },
-      {
-        id_crime: 73,
-        crime_name: 'Desocupación económica municipal'
-      },
-      {
-        id_crime: 74,
-        crime_name: 'Personas con acceso a drenaje en su vivienda'
-      },
-      {
-        id_crime: 75,
-        crime_name: 'Personas con acceso a electricidad en su vivienda'
-      },
-      {
-        id_crime: 76,
-        crime_name: 'Personas con acceso a electrodomésticos en su vivienda'
-      },
-      {
-        id_crime: 77,
-        crime_name: 'Inmigración estatal'
-      },
-      {
-        id_crime: 78,
-        crime_name: 'Inmigración municipal'
-      },
-      {
-        id_crime: 79,
-        crime_name: 'Lengua indígena'
-      }
-    ])
-    const divs = ref([])
+  name: "municipio",
+  props: ["title", "items", "name"],
+  components: {
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuItems,
+    ChevronDownIcon,
+  },
 
-    // make sure to reset the refs before each update
-    onBeforeUpdate(() => {
-      divs.value = []
-    })
+  setup() {
+    const products = ref([]);
+    const divs = reactive([]);
+    const url = "https://api.npoint.io/2e9129c41e1f250faa90";
+    axios.get(url).then((response) => {
+      products.value = response.data.map((x) => x.name_mun);
+      console.log(products);
+    });
+    setTimeout(() => {
+      console.log("hello entidad");
+    }, 2000);
 
     return {
-      list,
-      divs
-    }
+      products,
+      divs,
+    };
+  },
+};
+</script>
+
+
+<template>
+  <div id="app">
+  <section>
+    <h1>🍺 Make yourself some Punk Beers 🍻</h1>
+    <div v-if="!beers.length" class="loading">Loading...</div>
+    <div v-for="beer in beers" 
+    :key="beer"
+    class="beer-contain">
+     
+      <div class="beer-info">
+        <h2>{{ "name" }}</h2>
+        <h2>{{ beer }}</h2>
+  
+        <p><span class="bright">Description:</span> {{ beer.desc }}</p>
+        <p><span class="bright">Tips:</span> {{ beer.tips }}</p>
+        <h3 class="bright">Food Pairings</h3>
+        <ul>
+          <li v-for="item in beer.food"
+          :key="item">
+            {{ item }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+</template>
+
+<script>
+import axios from 'axios'
+export default {
+  
+data() {
+    return {
+      bottom: false,
+      beers: []
+    };
+  },
+  created() {
+    axios.get("https://api.npoint.io/2e9129c41e1f250faa90").then((response) => {
+    let api = response.data.map((x) => x.name_mun)
+        console.log(api)
+        console.log(response.data)
+
+      this.beers.push(api[12]);
+    
+    });
+  },
+  methods: {
+    bottomVisible() {
+      const scrollY = window.scrollY;
+      const visible = document.documentElement.clientHeight;
+      const pageHeight = document.documentElement.scrollHeight;
+      const bottomOfPage = visible + scrollY >= pageHeight;
+      return bottomOfPage || pageHeight < visible;
+    },
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+body {
+  font-family: 'Archivo Narrow', sans-serif;
+  background: #25859a;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Fjalla One', sans-serif;
+}
+
+h1 {
+  margin-top: 40px;
+  color: white;
+  text-align: center;
+}
+
+.loading {
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}
+
+.display {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#app {
+  @extend .display;
+  flex-direction: column;
+}
+
+.beer-contain {
+  @extend .display;
+  width: 50%;
+  margin: 20px 24%;
+  box-shadow: 0 2px 3px 1px rgba(30, 0, 0, 0.1);
+}
+
+.beer-img {
+  @extend .display;
+  padding: 30px;
+  background: #FF6542;
+  border: 1px solid #88498F;
+  border-right: 1px solid #f44822;
+}
+
+.beer-info {
+  background: #564154;
+  color: white;
+  padding: 30px;
+  border: 1px solid #88498F;
+  .bright {
+    color: #fcd7cf;
+    font-family: 'Contrail One', sans-serif;
   }
 }
-</script>
+
+h3 {
+  margin-bottom: 5px;
+}
+
+ul {
+  margin-top: 5px;
+}
+
+</style>
+
