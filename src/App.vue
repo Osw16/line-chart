@@ -2,16 +2,24 @@
   <header>
 
   </header>
-  <MenuDrop />
-  <RealData />
+  <!-- <MenuDrop /> -->
+  <!-- <RealData /> -->
+  <!-- <Dotd3/> -->
+  <!-- <PackChart :tweetData="loadData" /> -->
   <!-- <BaseLoading /> -->
+
+
 
 </template>
 
 <script>
+import * as d3 from "d3";
+
 import MenuDrop from './components/MenuDrop.vue'
 import BaseLoading from './components/BaseLoading.vue'
 import RealData from './components/RealData.vue'
+import Dotd3 from './components/Dotd3.vue'
+import PackChart from './components/Chart.vue'
 
 
 export default {
@@ -19,23 +27,35 @@ export default {
   components: {
     MenuDrop,
     BaseLoading,
-    RealData
+    RealData,
+    Dotd3,
+    PackChart
   },
-  data () {
+  data() {
     return {
-      toggleClass: 'ani1'
-    }
+      loadData: []
+    };
   },
-
+  mounted() {
+    console.log("App loaded");
+    this.fetchData();
+  },
+   created(){
+    Promise.all([
+      d3.json('./hechos.json'),
+      d3.json('./tweets.json'),
+    ]).then(([hechos,tuits])=>{
+      this.loadData=hechos
+    }).catch(err=>console.log(err))
+  },
   methods: {
-    play () {
-      // toggle classes to animate the line draw
-      this.toggleClass === 'ani1'
-        ? (this.toggleClass = 'ani2')
-        : (this.toggleClass = 'ani1')
+    async fetchData() {
+      let data = await d3.json("./dataset.json");
+      this.loadData = data;
+      console.log(data)
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

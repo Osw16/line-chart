@@ -18,12 +18,9 @@
       </form>
       <strong>Output:</strong>
       <pre>
-                        <!-- {{output}} -->
+                        {{output}}
                         </pre>
-      <pre>
-                        {{ output2 }}
-                        </pre
-      >
+      
     </div>
   </div>
 </template>
@@ -42,7 +39,7 @@ export default {
       crime: 2,
       ent: 4,
       mun1: 3,
-      output: 5,
+      output: '',
       output2: 0,
     };
   },
@@ -58,8 +55,7 @@ export default {
       console.log(payload);
       EventService.getRandom(payload)
         .then((response) => {
-          currentObj.output = response.data;
-          currentObj.output2 = response.data;
+          currentObj.output = response.data.map((x)=>x.total_nac);
           console.log(response);
         })
         .catch((error) => console.log(error));
