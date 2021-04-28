@@ -1,0 +1,318 @@
+[
+ {
+   "id_crime": 1,
+   "crime_name": "Homicidio doloso"
+ },
+ {
+   "id_crime": 2,
+   "crime_name": "Suicidio"
+ },
+ {
+   "id_crime": 3,
+   "crime_name": "Feminicidios (metodología DC)"
+ },
+ {
+   "id_crime": 4,
+   "crime_name": "Investigaciones por abuso sexual"
+ },
+ {
+   "id_crime": 5,
+   "crime_name": "Investigaciones por acoso sexual"
+ },
+ {
+   "id_crime": 6,
+   "crime_name": "Investigaciones por feminicidio"
+ },
+ {
+   "id_crime": 7,
+   "crime_name": "Investigaciones por homicidio culposo"
+ },
+ {
+   "id_crime": 8,
+   "crime_name": "Investigaciones por homicidio doloso"
+ },
+ {
+   "id_crime": 9,
+   "crime_name": "Investigaciones por hostigamiento sexual"
+ },
+ {
+   "id_crime": 10,
+   "crime_name": "Investigaciones por lesiones culposas"
+ },
+ {
+   "id_crime": 11,
+   "crime_name": "Investigaciones por lesiones dolosas"
+ },
+ {
+   "id_crime": 12,
+   "crime_name": "Investigaciones por narcomenudeo"
+ },
+ {
+   "id_crime": 13,
+   "crime_name": "Investigaciones por rapto"
+ },
+ {
+   "id_crime": 14,
+   "crime_name": "Investigaciones por secuestro"
+ },
+ {
+   "id_crime": 15,
+   "crime_name": "Investigaciones por tráfico de menores"
+ },
+ {
+   "id_crime": 16,
+   "crime_name": "Investigaciones por trata de personas"
+ },
+ {
+   "id_crime": 17,
+   "crime_name": "Investigaciones por violación equiparada"
+ },
+ {
+   "id_crime": 18,
+   "crime_name": "Investigaciones por violación simple"
+ },
+ {
+   "id_crime": 19,
+   "crime_name": "Investigaciones por violencia de género"
+ },
+ {
+   "id_crime": 20,
+   "crime_name": "Investigaciones por violencia familiar"
+ },
+ {
+   "id_crime": 21,
+   "crime_name": "Víctimas en carpetas de investigación por casos de extorsión"
+ },
+ {
+   "id_crime": 22,
+   "crime_name": "Víctimas en carpetas de investigación por casos de feminicidio"
+ },
+ {
+   "id_crime": 23,
+   "crime_name": "Víctimas en carpetas de investigación por casos de homicidio culposo"
+ },
+ {
+   "id_crime": 24,
+   "crime_name": "Víctimas en carpetas de investigación por casos de homicidio doloso"
+ },
+ {
+   "id_crime": 25,
+   "crime_name": "Víctimas en carpetas de investigación por casos de lesiones culposas"
+ },
+ {
+   "id_crime": 26,
+   "crime_name": "Víctimas en carpetas de investigación por casos de lesiones dolosas"
+ },
+ {
+   "id_crime": 27,
+   "crime_name": "Víctimas en carpetas de investigación por casos de rapto"
+ },
+ {
+   "id_crime": 28,
+   "crime_name": "Víctimas en carpetas de investigación por casos de secuestro"
+ },
+ {
+   "id_crime": 29,
+   "crime_name": "Víctimas en carpetas de investigación por casos de tráfico de menores"
+ },
+ {
+   "id_crime": 30,
+   "crime_name": "Víctimas en carpetas de investigación por casos de trata de personas"
+ },
+ {
+   "id_crime": 31,
+   "crime_name": "Llamadas de emergencia a nivel estatal por incidentes de violencia contra mujeres"
+ },
+ {
+   "id_crime": 32,
+   "crime_name": "Llamadas de emergencia a nivel nacional por incidentes de violencia contra mujeres"
+ },
+ {
+   "id_crime": 33,
+   "crime_name": "Total de casos positivos por COVID-19"
+ },
+ {
+   "id_crime": 34,
+   "crime_name": "Total de casos positivos en mujeres embarazadas por COVID-19"
+ },
+ {
+   "id_crime": 35,
+   "crime_name": "Total de defunciones por COVID-19"
+ },
+ {
+   "id_crime": 36,
+   "crime_name": "Total de defunciones en mujeres embarazadas por COVID-19"
+ },
+ {
+   "id_crime": 37,
+   "crime_name": "Total de personas desaparecidas a nivel estatal"
+ },
+ {
+   "id_crime": 38,
+   "crime_name": "Total de embarazos infantiles"
+ },
+ {
+   "id_crime": 39,
+   "crime_name": "Índice de rezago social"
+ },
+ {
+   "id_crime": 40,
+   "crime_name": "Carencia por acceso a servicios de salud"
+ },
+ {
+   "id_crime": 41,
+   "crime_name": "Carencia por servicios básicos en vivienda"
+ },
+ {
+   "id_crime": 42,
+   "crime_name": "Carencia por acceso a seguridad social"
+ },
+ {
+   "id_crime": 43,
+   "crime_name": "Pobreza extrema"
+ },
+ {
+   "id_crime": 44,
+   "crime_name": "Pobreza moderada"
+ },
+ {
+   "id_crime": 45,
+   "crime_name": "Carencia por rezago educativo"
+ },
+ {
+   "id_crime": 46,
+   "crime_name": "Egresos hospitalarios por lesiones con armas de fuego"
+ },
+ {
+   "id_crime": 47,
+   "crime_name": "Egresos hospitalarios por asfixia o ahorcamiento"
+ },
+ {
+   "id_crime": 48,
+   "crime_name": "Egresos hospitalarios por lesiones"
+ },
+ {
+   "id_crime": 49,
+   "crime_name": "Egresos hospitalarios por abuso sexual"
+ },
+ {
+   "id_crime": 50,
+   "crime_name": "Asegurados mensuales"
+ },
+ {
+   "id_crime": 51,
+   "crime_name": "Total de personas desaparecidas a nivel municipal"
+ },
+ {
+   "id_crime": 52,
+   "crime_name": "Total de víctimas de agresiones según ENVIPE"
+ },
+ {
+   "id_crime": 53,
+   "crime_name": "Personas víctimas de extorsión según ENVIPE"
+ },
+ {
+   "id_crime": 54,
+   "crime_name": "Personas víctimas de hostigamiento sexual según ENVIPE"
+ },
+ {
+   "id_crime": 55,
+   "crime_name": "Personas víctimas de lesiones según ENVIPE"
+ },
+ {
+   "id_crime": 56,
+   "crime_name": "Personas víctimas de secuestro según ENVIPE"
+ },
+ {
+   "id_crime": 57,
+   "crime_name": "Personas víctimas de violación según ENVIPE"
+ },
+ {
+   "id_crime": 58,
+   "crime_name": "Personas que consideran insegura la entidad donde residen según ENVIPE"
+ },
+ {
+   "id_crime": 59,
+   "crime_name": "Mujeres de 15 años o más que han sufrido al menos un incidente de abuso sexual"
+ },
+ {
+   "id_crime": 60,
+   "crime_name": "Mujeres de 15 años o más que han sufrido al menos un incidente de acoso sexual"
+ },
+ {
+   "id_crime": 61,
+   "crime_name": "Mujeres de 15 años o más que han sufrido al menos una cesarea sin consentimiento"
+ },
+ {
+   "id_crime": 62,
+   "crime_name": "Mujeres de 15 años o más que han sufrido consecuencias económicas por embarazo"
+ },
+ {
+   "id_crime": 63,
+   "crime_name": "Mujeres de 15 años o más que han sido esterelizadas o recibido un anticonceptivo sin consentimiento"
+ },
+ {
+   "id_crime": 64,
+   "crime_name": "Mujeres de 15 años o más que han sido humilladas por ser mujer al menos una vez"
+ },
+ {
+   "id_crime": 65,
+   "crime_name": "Mujeres de 15 años o más que han sufrido al menos un intento de violación"
+ },
+ {
+   "id_crime": 66,
+   "crime_name": "Mujeres de 15 años o más que han sido lesionadas físcamente al menos una vez"
+ },
+ {
+   "id_crime": 67,
+   "crime_name": "Mujeres de 15 años o más que han sufrido al menos un incidente de abuso sexual"
+ },
+ {
+   "id_crime": 68,
+   "crime_name": "Mujeres de 15 años o más que han sido seguidas o vigiladas"
+ },
+ {
+   "id_crime": 69,
+   "crime_name": "Mujeres de 15 años o más que han sufrido al menos una violación"
+ },
+ {
+   "id_crime": 70,
+   "crime_name": "Personas desempleadas"
+ },
+ {
+   "id_crime": 71,
+   "crime_name": "Personas autoadscriptas como afrodescendientes"
+ },
+ {
+   "id_crime": 72,
+   "crime_name": "Personas autoadscriptas como indígenas"
+ },
+ {
+   "id_crime": 73,
+   "crime_name": "Desocupación económica municipal"
+ },
+ {
+   "id_crime": 74,
+   "crime_name": "Personas con acceso a drenaje en su vivienda"
+ },
+ {
+   "id_crime": 75,
+   "crime_name": "Personas con acceso a electricidad en su vivienda"
+ },
+ {
+   "id_crime": 76,
+   "crime_name": "Personas con acceso a electrodomésticos en su vivienda"
+ },
+ {
+   "id_crime": 77,
+   "crime_name": "Inmigración estatal"
+ },
+ {
+   "id_crime": 78,
+   "crime_name": "Inmigración municipal"
+ },
+ {
+   "id_crime": 79,
+   "crime_name": "Lengua indígena"
+ }
+]

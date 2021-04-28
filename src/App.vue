@@ -5,7 +5,8 @@
   <!-- <MenuDrop /> -->
   <!-- <RealData /> -->
   <!-- <Dotd3/> -->
-  <!-- <PackChart :tweetData="loadData" /> -->
+  <PackChart :tweetData="loadData" />
+  <!-- <Axis /> -->
   <!-- <BaseLoading /> -->
 
 
@@ -14,12 +15,12 @@
 
 <script>
 import * as d3 from "d3";
-
 import MenuDrop from './components/MenuDrop.vue'
 import BaseLoading from './components/BaseLoading.vue'
 import RealData from './components/RealData.vue'
 import Dotd3 from './components/Dotd3.vue'
 import PackChart from './components/Chart.vue'
+import Axis from './components/Axis.vue'
 
 
 export default {
@@ -29,7 +30,8 @@ export default {
     BaseLoading,
     RealData,
     Dotd3,
-    PackChart
+    PackChart,
+    Axis
   },
   data() {
     return {
@@ -40,17 +42,22 @@ export default {
     console.log("App loaded");
     this.fetchData();
   },
-   created(){
-    Promise.all([
-      d3.json('./hechos.json'),
-      d3.json('./tweets.json'),
-    ]).then(([hechos,tuits])=>{
-      this.loadData=hechos
-    }).catch(err=>console.log(err))
-  },
+  //  created(){
+  //   Promise.all([
+  //     d3.json('./hechos.json'),
+  //     d3.json('./entidades.json'),
+  //   ]).then(([hechos,tuits])=>{
+  //     // this.loadData=hechos
+  //     // console.log('hechos',hechos,'tuits',tuits)
+  //   }).catch(err=>console.log(err))
+  // },
   methods: {
     async fetchData() {
-      let data = await d3.json("./dataset.json");
+      const payload = { id_crime: 12, id_ent: 14, id_mun1: 39 }
+      let data = await d3.json('https://spotlight-unfpa.datacivica.org/api/v1/timeline',{
+        method:"POST",
+        body:JSON.stringify(payload)
+      });
       this.loadData = data;
       console.log(data)
     }

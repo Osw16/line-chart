@@ -19,7 +19,7 @@
         </circle>
       </g>
     </svg>
-    <svg
+    <!-- <svg
       :height='height'
       :width='width'
     >
@@ -35,7 +35,7 @@
         >
         </circle>
       </g>
-    </svg>
+    </svg> -->
   </div>
 </template>
 
