@@ -5,8 +5,8 @@
   <!-- <MenuDrop /> -->
   <!-- <RealData /> -->
   <!-- <Dotd3/> -->
-  <PackChart :tweetData="loadData" />
-  <!-- <Axis /> -->
+  <!-- <PackChart :tweetData="loadData" /> -->
+  <Axis />
   <!-- <BaseLoading /> -->
 
 
@@ -59,7 +59,7 @@ export default {
         body:JSON.stringify(payload)
       });
       this.loadData = data;
-      console.log(data)
+      // console.log(data)
     }
   }
 };
