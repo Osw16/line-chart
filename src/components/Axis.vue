@@ -1,15 +1,27 @@
 <template>
   <div>
-    <form @submit="fetchData">
+    <form @submit.prevent="fetchData">
       <strong>crime:</strong>
-      <input type="number" class="form-control" v-model="crime" />
+      <input
+        type="number"
+        class="form-control"
+        v-model="crime"
+      />
       <strong>estado:</strong>
-      <input type="number" class="form-control" v-model="ent" />
+      <input
+        type="number"
+        class="form-control"
+        v-model="ent"
+      />
       <strong>municipio:</strong>
-      <input type="number" class="form-control" v-model="mun1" />
+      <input
+        type="number"
+        class="form-control"
+        v-model="mun1"
+      />
 
       <button class="">Submit</button>
-      
+
     </form>
     <PackChart :tweetData="loadData" />
     <strong>Output:</strong>
@@ -23,24 +35,24 @@ import PackChart from "./Chart";
 
 export default {
   name: "Axis",
-  components:{
+  components: {
     PackChart
   },
-  data() {
+  data () {
     return {
       crime: '',
       ent: '',
       mun1: '',
-      loadData:[],
+      loadData: [],
     };
   },
-  mounted(){
+  mounted () {
     console.log("AxisLoaded")
     this.fetchData();
   },
 
   methods: {
-    async fetchData() {
+    async fetchData () {
       const payload = {
         id_crime: Number(this.crime, 10),
         id_ent: Number(this.ent, 10),
