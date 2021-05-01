@@ -2,11 +2,11 @@
   <div>
     <form @submit="fetchData">
       <strong>crime:</strong>
-      <input type="number" class="form-control" v-model="crime" />
+      <input type="number" class="form-control" v-bind="crime" />
       <strong>estado:</strong>
-      <input type="number" class="form-control" v-model="ent" />
+      <input type="number" class="form-control" v-bind="ent" />
       <strong>municipio:</strong>
-      <input type="number" class="form-control" v-model="mun1" />
+      <input type="number" class="form-control" v-bind="mun1" />
 
       <button class="">Submit</button>
       
@@ -28,9 +28,9 @@ export default {
   },
   data() {
     return {
-      crime: null,
-      ent: null,
-      mun1: null,
+      crime: '',
+      ent: '',
+      mun1: '',
       loadData:[],
     };
   },

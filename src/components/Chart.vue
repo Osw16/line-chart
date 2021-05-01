@@ -61,7 +61,7 @@ export default {
 
     this.output_ = this.packChart
 //       test
-   console.log("hello",this.packChart)
+  //  console.log("hello",this.packChart)
   },
   methods: {
       packChart() {
