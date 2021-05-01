@@ -2,11 +2,11 @@
   <div>
     <form @submit="fetchData">
       <strong>crime:</strong>
-      <input type="number" class="form-control" v-bind="crime" />
+      <input type="number" class="form-control" v-model="crime" />
       <strong>estado:</strong>
-      <input type="number" class="form-control" v-bind="ent" />
+      <input type="number" class="form-control" v-model="ent" />
       <strong>municipio:</strong>
-      <input type="number" class="form-control" v-bind="mun1" />
+      <input type="number" class="form-control" v-model="mun1" />
 
       <button class="">Submit</button>
       
